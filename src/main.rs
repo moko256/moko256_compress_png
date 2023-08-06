@@ -161,6 +161,8 @@ async fn compress_webp(path_string: &str) -> Result<(), Box<dyn Error>> {
             "-mt",
             "-z",
             "9",
+            "-metadata",
+            "icc",
             path_string,
             "-o",
             &format!("{}.webp", &path_string[..path_string.len() - 4]),

@@ -10,6 +10,9 @@ use tokio::{join, process::Command};
 #[command(author, version, about, long_about = None)]
 struct Args {
     #[arg(long)]
+    no_png: bool,
+
+    #[arg(long)]
     no_webp: bool,
 
     #[arg(long)]
@@ -36,9 +39,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // PNG conversion
 
-    println!("Start PNG compression...");
+    if !args.no_png {
+        println!("Start PNG compression...");
 
-    {
         let queue_locked = Arc::new(Mutex::new(args.images.clone()));
 
         let cpu_count = num_cpus::get_physical();

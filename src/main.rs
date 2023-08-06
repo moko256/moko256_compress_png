@@ -117,7 +117,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                     );
 
                     if args.remove_larger_png {
-                        file_to_be_removed = Some(&png_file);
+                        file_to_be_removed = Some(png_file);
                     } else {
                         file_to_be_removed = None;
                     }
@@ -144,7 +144,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 async fn compress_png(path_string: &str) -> Result<(), Box<dyn Error>> {
     Command::new("zopflipng")
-        .args(&["-m", "-y", path_string, path_string])
+        .args(["-m", "-y", path_string, path_string])
         .status()
         .await?
         .exit_ok()?;
@@ -154,7 +154,7 @@ async fn compress_png(path_string: &str) -> Result<(), Box<dyn Error>> {
 
 async fn compress_webp(path_string: &str) -> Result<(), Box<dyn Error>> {
     Command::new("cwebp")
-        .args(&[
+        .args([
             "-mt",
             "-z",
             "9",

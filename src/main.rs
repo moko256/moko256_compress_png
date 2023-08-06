@@ -108,14 +108,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
                 if webp_size > png_size {
                     println!(
-                        "`{}`: PNG {} < WebP {}, WebP win!:",
+                        "`{}`: PNG {} < WebP {}, PNG win!:",
                         &png_file, png_size, webp_size
                     );
 
                     file_to_be_removed = Some(&webp_file);
                 } else {
                     println!(
-                        "`{}`: PNG {} > WebP {}, PNG win!:",
+                        "`{}`: PNG {} > WebP {}, WebP win!:",
                         &png_file, png_size, webp_size
                     );
 

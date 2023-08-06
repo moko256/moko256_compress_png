@@ -1,0 +1,29 @@
+[package]
+name = "compress_png"
+version = "0.1.0"
+edition = "2021"
+description = """A simple PNG compression utility.
+
+Steps:
+  1. Re-compress PNG image with `zopflipng`
+  2. Convert PNG image to WebP with `cwebp`
+  3. Remove WebP image if WebP image is larger than PNG"""
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[dependencies]
+num_cpus = "1.16"
+futures = "0.3.28"
+
+[dependencies.clap]
+version = "4.3"
+default-features = false
+features = ["std", "help", "usage", "error-context", "derive"]
+
+[dependencies.tokio]
+version = "1.29"
+default-features = false
+features = ["fs", "io-std", "process", "rt-multi-thread", "macros"]

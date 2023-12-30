@@ -147,7 +147,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 async fn compress_png(path_string: &str) -> Result<(), Box<dyn Error>> {
     Command::new("zopflipng")
-        .args(["-m", "-y", path_string, path_string])
+        .args([
+            "-m",
+            "-y",
+            "--keepchunks=cHRM,gAMA,hIST,iCCP,pHYs,sRGB",
+            path_string,
+            path_string,
+        ])
         .status()
         .await?
         .exit_ok()?;
